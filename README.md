@@ -4,7 +4,27 @@ Site responsivo em português, com página inicial e galeria independente em `di
 
 ## Visualizar localmente
 
-Execute `node preview.mjs` nesta pasta e abra http://127.0.0.1:4173. Os arquivos prontos para hospedagem ficam em `dist` e não exigem compilação.
+Extraia todos os arquivos do ZIP e abra `dist/index.html` no navegador. Mantenha `styles.css`, os arquivos JavaScript e a pasta `assets` junto ao HTML. No ZIP de distribuição, `index.html` já está na pasta principal.
+
+Os caminhos são relativos, por isso o site funciona ao abrir os arquivos diretamente, em uma subpasta ou por um servidor web. Os filtros e a ampliação das fotos também funcionam localmente. As fontes do Google precisam de internet; sem conexão, são usadas fontes do sistema.
+
+Para usar uma prévia por HTTP, execute `node preview.mjs` nesta pasta e abra http://127.0.0.1:4173. Não é necessário instalar dependências ou compilar.
+
+## Publicar na Vercel
+
+Importe o repositório `matmkttech-maker/laavclean` e use a raiz do repositório como **Root Directory** (campo vazio). O arquivo `vercel.json` já configura:
+
+- **Framework Preset:** Other.
+- **Build Command:** vazio; não há etapa de compilação.
+- **Install Command:** vazio; não há dependências.
+- **Output Directory:** `dist`.
+- A galeria pode ser acessada por `/galeria` ou pelo link `galeria.html`.
+
+Se o projeto já existe, confira o Root Directory e faça um novo deploy da branch `main`. Não use `dist` simultaneamente como Root Directory e Output Directory, pois isso procuraria uma pasta `dist/dist`.
+
+Para hospedar apenas o conteúdo do ZIP de distribuição, use a pasta que contém `index.html` como raiz e deixe Output Directory vazio. A configuração da raiz do repositório é destinada ao envio pelo GitHub.
+
+Referência: https://vercel.com/docs/builds/configure-a-build
 
 ## Conteúdo
 
